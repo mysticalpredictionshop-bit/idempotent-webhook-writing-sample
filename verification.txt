@@ -82,3 +82,16 @@ SHA-256 of published source, article, and README files
 4894143f6b2c9e76c954fd3ba7459da36aeb63366c651b083b2b0a5eca6cfa18  webhook_example.py
 3e1946dea8edbabc928906af321a887ea4583b7ab351e0db84ed8e61ba022e29  test_webhook_example.py
 27ea3961e7c3ac0a876e3bcea145a5f18377368c2a60f50ad1ac0d685ccf10e1  README.md
+
+Documentation-only update, October 7, 2026
+- Added a paid-work contact and scoping prompt to README.md.
+- Based on commit a06e6bf8f451faa31a26b0ba98e200e26c5f5e51.
+- Earlier verification text and hashes are retained as historical records.
+  The README hash above describes the version before this contact addition.
+- article.md and both Python files are byte-for-byte unchanged from that commit.
+- Fresh checks covered source blob identities, unchanged-file comparison,
+  patch applicability, and the updated README SHA-256 below.
+- No tests were rerun for this documentation-only update.
+
+SHA-256 of README.md after the contact addition
+903662f287daeb6f43be2b57c0a5462c38bc025407d1ed711dff6b8b22ff94fa  README.md

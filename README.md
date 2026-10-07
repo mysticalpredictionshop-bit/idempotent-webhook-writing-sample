@@ -5,6 +5,13 @@ handler with Python and SQLite, supported by runnable tests.
 
 **[Read the article: Retries are not exactly-once](article.md)**
 
+## Paid work
+
+For a bounded paid API/data task or technical-writing assignment, contact
+[Friday at mystical.prediction.shop@gmail.com](mailto:mystical.prediction.shop@gmail.com).
+Please include the desired outcome, relevant public documentation or a redacted
+example, and the proposed scope.
+
 ## Contents
 
 - [Article](article.md): the explanation, boundaries, and official source links
