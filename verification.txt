@@ -1,0 +1,84 @@
+Verification record
+Retries are not exactly-once: testing a small idempotent webhook handler
+
+Verified October 7, 2026 at approximately 11:40 UTC
+Python: 3.12.14
+SQLite runtime: 3.53.1
+Dependencies: Python standard library only
+
+Command (run from the sample folder):
+python3 -B -W error -m unittest -v
+
+test_concurrent_same_event_busy_then_retry_is_duplicate (test_webhook_example.WebhookTests.test_concurrent_same_event_busy_then_retry_is_duplicate) ... ok
+test_distinct_ids_each_count (test_webhook_example.WebhookTests.test_distinct_ids_each_count) ... ok
+test_existing_transaction_is_not_rolled_back (test_webhook_example.WebhookTests.test_existing_transaction_is_not_rolled_back) ... ok
+test_failure_before_commit_rolls_back_then_retry_applies (test_webhook_example.WebhookTests.test_failure_before_commit_rolls_back_then_retry_applies) ... ok
+test_incompatible_connection_mode_is_rejected (test_webhook_example.WebhookTests.test_incompatible_connection_mode_is_rejected) ... ok
+test_repeat_delivery_counts_once (test_webhook_example.WebhookTests.test_repeat_delivery_counts_once) ... ok
+test_reused_id_with_changed_payload_is_rejected (test_webhook_example.WebhookTests.test_reused_id_with_changed_payload_is_rejected) ... ok
+test_unknown_ticket_does_not_leave_a_receipt (test_webhook_example.WebhookTests.test_unknown_ticket_does_not_leave_a_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.007s
+
+OK
+Additional checks
+- Both Python files compiled successfully for syntax checking
+- 50 consecutive complete suite runs passed, totaling 400 test executions
+- Independent AI review reran all eight tests and the concurrent-delivery test
+  100 times without a failure; this was not human review
+- The eight assertions were first observed failing against the unimplemented
+  handler, then passing after implementation
+- Article: 808 words before the source list; 840 including title and sources
+- Official Python and SQLite references were checked on October 7, 2026
+
+What this establishes
+- Repeated matching delivery leaves one receipt and one counter increment
+- A second simultaneous writer receives SQLITE_BUSY with timeout=0; retry
+  after the first commit returns duplicate without another increment
+- An injected exception immediately before COMMIT rolls back both writes
+- Reusing an event ID for changed payload is rejected without a second effect
+- Distinct event IDs count separately; unknown tickets leave no receipt
+- Incompatible connection modes are rejected; a caller's open transaction
+  is not rolled back by the handler
+
+Limits
+This is a new original educational sample. No client deployment, production
+load, power failure, process kill, hostile request, HTTP endpoint, remote API,
+email delivery, or multi-machine database arrangement was tested. The example
+requires authenticated, validated input and retained receipts in one database.
+It is not a complete webhook server or security audit. No performance or
+end-to-end exactly-once delivery claim is made.
+
+Publication verification, October 7, 2026 (13:23 UTC)
+- Extracted and inspected exactly five original files from the approved ZIP
+- Verified all four SHA-256 hashes in the original verification record
+- Reran the complete eight-test suite successfully with Python 3.12.14 and
+  SQLite 3.53.1; both Python files also passed a fresh syntax compilation check
+- Code and tests are byte-for-byte identical to the approved sample
+- article.txt is published as article.md with Markdown headings only
+- README is formatted as Markdown, with public-sample wording and local links
+- No client-specific solution, personal data, credentials, or license added
+- The original run and review claims above are preserved from the original
+  verification record; publication checks do not expand their scope
+
+Fresh test output
+test_concurrent_same_event_busy_then_retry_is_duplicate (test_webhook_example.WebhookTests.test_concurrent_same_event_busy_then_retry_is_duplicate) ... ok
+test_distinct_ids_each_count (test_webhook_example.WebhookTests.test_distinct_ids_each_count) ... ok
+test_existing_transaction_is_not_rolled_back (test_webhook_example.WebhookTests.test_existing_transaction_is_not_rolled_back) ... ok
+test_failure_before_commit_rolls_back_then_retry_applies (test_webhook_example.WebhookTests.test_failure_before_commit_rolls_back_then_retry_applies) ... ok
+test_incompatible_connection_mode_is_rejected (test_webhook_example.WebhookTests.test_incompatible_connection_mode_is_rejected) ... ok
+test_repeat_delivery_counts_once (test_webhook_example.WebhookTests.test_repeat_delivery_counts_once) ... ok
+test_reused_id_with_changed_payload_is_rejected (test_webhook_example.WebhookTests.test_reused_id_with_changed_payload_is_rejected) ... ok
+test_unknown_ticket_does_not_leave_a_receipt (test_webhook_example.WebhookTests.test_unknown_ticket_does_not_leave_a_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.007s
+
+OK
+
+SHA-256 of published source, article, and README files
+4bbba5541ac09c0fbad1b1cf09ef5ba944ae50f6160b0df5005008358984fb82  article.md
+4894143f6b2c9e76c954fd3ba7459da36aeb63366c651b083b2b0a5eca6cfa18  webhook_example.py
+3e1946dea8edbabc928906af321a887ea4583b7ab351e0db84ed8e61ba022e29  test_webhook_example.py
+27ea3961e7c3ac0a876e3bcea145a5f18377368c2a60f50ad1ac0d685ccf10e1  README.md
